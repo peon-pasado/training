@@ -14,3 +14,9 @@
 
  3. [semana 3](https://peon-pasado.github.io/training/clases/semana-3)
 
+    - [video 1](https://drive.google.com/file/d/1owzvhzO-wGCTHVN4rSSRSku8fIsDsD-k/view?usp=sharing)
+    - [video 2](https://drive.google.com/file/d/1NXFZZhHacmOQK1FCGDJ3oYxvW6N2QAzj/view?usp=sharing)
+   
+ 4. [semana 4]()
+
+    - [video 1](https://drive.google.com/file/d/1weIYCInzdquFe7e9kv1smCpnrDysNiwz/view?usp=sharing)
