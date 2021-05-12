@@ -22,7 +22,7 @@
     - [video 1](https://drive.google.com/file/d/1weIYCInzdquFe7e9kv1smCpnrDysNiwz/view?usp=sharing)
     - [video 2](https://drive.google.com/file/d/19Wf0AdLoQ-0-DPQLhCzxZaKbWx3vlBo9/view?usp=sharing)
 
- 5. [semana 5]()
+ 5. [semana 5](https://peon-pasado.github.io/training/clases/semana-5)
 
     - [contest](https://vjudge.net/contest/438386)
 
