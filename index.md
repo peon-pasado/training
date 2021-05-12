@@ -27,3 +27,6 @@
     - [contest](https://vjudge.net/contest/438386)
 
     - [video 1](https://drive.google.com/file/d/1Pd52FgQz08hTdl-XxAydaSnNu0WaMGM0/view?usp=sharing)
+
+    - [upsolving](https://vjudge.net/contest/438615)
+  
