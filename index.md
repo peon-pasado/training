@@ -17,7 +17,7 @@
     - [video 1](https://drive.google.com/file/d/1owzvhzO-wGCTHVN4rSSRSku8fIsDsD-k/view?usp=sharing)
     - [video 2](https://drive.google.com/file/d/1NXFZZhHacmOQK1FCGDJ3oYxvW6N2QAzj/view?usp=sharing)
    
- 4. [semana 4]()
+ 4. [semana 4](...)
 
     - [video 1](https://drive.google.com/file/d/1weIYCInzdquFe7e9kv1smCpnrDysNiwz/view?usp=sharing)
     - [video 2](https://drive.google.com/file/d/19Wf0AdLoQ-0-DPQLhCzxZaKbWx3vlBo9/view?usp=sharing)
@@ -30,7 +30,7 @@
 
     - [upsolving](https://vjudge.net/contest/438615)
 
-  6. [semana 6]()
+  6. [semana 6](...)
 
     - [video 1](https://drive.google.com/file/d/1Vx3nPMxgOOlED8PpiOapfLA4d3vWg8XL/view?usp=sharing)
 
