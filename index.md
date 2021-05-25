@@ -32,9 +32,9 @@
 
   6. [semana 6](...)
 
-   - [video 1](https://drive.google.com/file/d/1Vx3nPMxgOOlED8PpiOapfLA4d3vWg8XL/view?usp=sharing)
+      - [video 1](https://drive.google.com/file/d/1Vx3nPMxgOOlED8PpiOapfLA4d3vWg8XL/view?usp=sharing)
 
-   - [video 2](https://drive.google.com/file/d/1XHArKLGIoMbYuzKccMhrgihd6LZ4tijp/view?usp=sharing)
+      - [video 2](https://drive.google.com/file/d/1XHArKLGIoMbYuzKccMhrgihd6LZ4tijp/view?usp=sharing)
 
   7. [semana 7](https://peon-pasado.github.io/training/clases/semana-7)
 
