@@ -1,0 +1,577 @@
+---
+title: "Repaso de c++"
+output: html_document
+---
+
+## Tipos de variables:
+
+- **char**: Permite almacenar caracteres, tales como 'a', 'b', 'c', '1', '2',
+'A', 'D' tambien llamados caracteres imprimibles, y también caracteres menos
+obvios como '\n' (fin de linea), '\b' (backspace), '\t' (tab). Existen 256
+caracteres básicos, llamados caracteres ASCII. Cada caracter tiene un valor
+único desde el 0 hasta el 255.
+
+- **int**: Permite guardar enteros, en el rango $[-2^{31}, 2^{31}-1]$
+
+- **long long**: Permite guardar enteros, en el rango $[-2^{63}, 2^{63}-1]$
+
+- **float**: permite guardar valores reales en un determinado rango con 6 
+dígitos de precisión.
+
+- **double**: permite guardar valores reales en un determinado rango con 12 
+dígitos de precisión.
+
+
+Puedes encontrar más información sobre los tipos de datos básicos en c++, 
+visitando la página: [cpp-reference](https://en.cppreference.com/w/cpp/language/types)
+
+
+#### **Ejemplos de uso**:
+
+1. Recibes dos enteros $A$ y $B$ ($1 \le A, B \le 10^{9}$), devuelve su producto.
+
+```c++
+#include <iostream>
+using namespace std;
+
+int main() {
+  long long A, B;
+  cin >> A >> B;
+  cout << A * B << '\n';
+  return 0;
+}
+```
+
+2. Imprimir la suma de los $n$ ($1 \le n \le 10^9$) números.
+
+```c++
+#include <iostream>
+using namespace std;
+
+int main() {
+  long long n;
+  cin >> n;
+  cout << n * (n+1) / 2 << '\n'; 
+  return 0;
+}
+```
+
+3. Imprimir la media harmónica de dos números $A$ y $B$.
+
+```c++
+#include <iostream>
+using namespace std;
+
+int main() {
+  double A, B;
+  cin >> A >> B;
+  cout << 2/(1/A + 1/B) << '\n';
+  return 0;
+}
+```
+
+---
+
+---
+
+## Estructuras de control selectivas:
+
+Nosotros podemos cambiar el comportamiento de un programa c++, a traves de una
+condición, esta condición es una expresión booleana:
+
+
+#### if-else
+
+```c++
+if (**CONDICIÓN**) {
+
+  **SE EJECUTA SI LA CONDICIÓN ES VÁLIDA**
+
+} else {
+
+  **SE EJECUTA SI LA CONDICIÓN ES INVÁLIDA**
+
+}
+
+```
+
+#### if
+
+```c++
+if (**CONDICIÓN**) {
+
+  **SE EJECUTA SI LA CONDICIÓN ES VÁLIDA**
+
+}
+
+```
+
+también se puede obviar las llaves si solo ponemos una línea de código, pero
+no es recomendable para mantener la legibilidad.
+
+
+Las condiciones que podemos usar son expresiones que se combinan a través de los
+operadores lógicos.
+
+
+### Operadores lógicos (||, &&, !)
+
+
+  - **operador ||**: Este operador funciona como un **O** lógico:
+
+
+<center>
+![fig 1. Diagrama de venn de O](https://www.math24.net/wp-content/uploads/2020/04/set-operations1.svg){width=50%}
+</center>
+
+
+  - **operador &&**: Este operador funciona como un $Y$ lógico
+  
+<center>
+![fig 2. Diagrama de venn de Y](https://www.math24.net/wp-content/uploads/2020/04/set-operations2.svg){width=50%}
+</center>
+
+  - **operator !**: Este operator funciona como una negación lógica.
+
+<center>
+![fig 3. Diagrama de venn de negación](https://www.math24.net/wp-content/uploads/2020/04/set-operations5.svg){width=50%}
+</center>
+
+
+#### Ejemplos de expresiones lógicas
+
+1. Un número n impar y múltiplo de 5.
+
+```c++
+n % 2 == 1 && n % 5 == 0
+```
+
+2. El producto de dos números a y b es múltiplo de 12 o uno es multiplo de 8. 
+
+```c++
+(a * b) % 12 == 0 || (a % 8 == 0 || b % 8 == 0)
+```
+
+3. El numero n no esta entre 5 y 10.
+
+```c++
+!(5 <= n && n <= 10)        
+```
+
+**nota:** *El uso de los parentesis es para separar pares de expresiones booleanas,
+también es una buena práctica usarlos y saber exactamente que expresiones están
+involucradas.*
+
+
+### El tipo de datos **bool**
+
+podemos guardar expresiones booleanas en variables (enteros que solo toman valores
+0 o 1), este tipo de datos se llama "bool". Es util si quieremos usar expresiones booleanas 
+en muchos sitios, o expresiones muy largas.
+
+#### Ejemplos de uso:
+
+1. verificamos que las longitudes a, b, c pueden formar un triangulo.
+
+```c++
+bool abc = a < b + c;
+bool bac = b < a + c;
+bool cab = c < a + b;
+
+bool es_triangulo = abc && (bac && cab);
+
+```
+
+### Ejemplos de uso **if**:
+
+1. Imprimir si un año es bisiesto o no (es bisiesto si es multiplo de 400 o 
+es multiplo de 4 pero no de 100).
+
+
+```c++
+#include<iostream>
+using namespace std;
+
+int main() {
+  int n;
+  cin >> n;
+  if (n % 400 == 0 || (n % 4 == 0 && n % 100 != 0)) {
+    cout << "bisiesto" << endl;
+  } else {
+    cout << "no bisiesto" << endl;
+  }
+  return 0;
+}
+```
+
+2. imprimir si un triangulo es valido o no.
+
+```c++
+#include<iostream>
+using namespace std;
+
+int main() {
+  int a, b, c;
+  cin >> a >> b >> c;
+  bool abc = a < b + c;
+  bool bac = b < a + c;
+  bool cab = c < a + b;
+
+  bool es_triangulo = abc && (bac && cab);
+  
+  if (es_triangulo) {
+    cout << "válido" << endl;
+  } else {
+    cout << "inválido" << endl;
+  }
+  return 0;
+}
+```
+
+
+Podemos encontrar más información en [link](http://wiki.oia.unsam.edu.ar/curso-cpp/estructuras-selectivas).
+
+---
+
+---
+
+## Estructuras de control repetitivas
+
+Las tareas repetitivas tal vez pueda realizarlas si se realizan 1, 2 o 3 veces, más
+allá de eso, es imposible o insoportable hacerlo 100 o "n" veces. Para ello existen
+algunas estructuras de control que se pueden usar en c++.
+
+### Estructura repetitiva **while**
+
+**while** se puede utilizar mientras se cumpla una condición, esa condición tiene
+la misma estructura usada como en el estructura selectiva **if**.
+
+```c++
+while (**CONDICIÓN**) {
+  **INSTRUCCIONES**
+}
+```
+
+las **\*\*INSTRUCCIONES\*\*** se realizan reiteradamente mientras la condición
+es válida. El proceso será: **verificar condición**, **ejecutar instrucción**,
+**verificar condición**, **ejecutar instrucción**, ... que se interrumpe solo
+en caso de no cumplirse la condición (la condición toma un valor falso).
+
+
+### Ejemplo de uso
+
+1. leer números de la entrada estándar (usar **cin**) e imprimirlo en la salida
+estándar (usar **cout**), hasta leer el número 42 o se acabe la entrada.
+
+```c++
+#include<bits/stdc++.h>
+using namespace std;
+
+int main() {
+  int n;
+  while (cin >> n && n != 42) {
+    cout << n << '\n';
+  }
+  return 0;
+}
+```
+
+2. Imprimir los dígitos de un número positivo, ingresado por la entrada estándar.
+
+```c++
+#include<bits/stdc++.h>
+using namespace std;
+
+int main() {
+  int n;
+  cin >> n;
+  while (n > 0) {
+    int d = n % 10;
+    cout << d << '\n';
+    n /= 10;
+  }
+  return 0;
+}
+```
+
+**nota:** Acá usamos una característica de c++, llamada **división entera**.
+Al realizarse una división entre dos variables enteras, se trunca la respuesta,
+en este caso $n = n / 10$ o $n /= 10$ donde $n / 10$ representa la operación
+máximo entero de dividir $n$ entre $10$.
+
+### Estructura repetitiva **for**
+
+**for** es una estructura repetitiva al igual que while, que funciona similarmente
+pero tiene una estructura para hacer repeticiones más concretas.
+
+```c++
+for (**INICIALIZACION**; **CONDICIÓN**; **INCREMENTO**) {
+  **INSTRUCCIONES**
+}
+```
+
+Como vemos, la estructura es más compleja, pero no más dificil de usar. La
+parte de **\*\*INICIALIZACÓN\*\*** es donde se inicializar las variables
+que vamos a usar, generalmente un **int i = 0**. La parte de **\*\*CONDICIÓN\*\***
+se pone una condición de verificación como en la estructura **while**. La
+parte del **\*\*INCREMENTO\*\*** sirve para modificar la variable, la idea es
+que cambie para que se cumpla la condición un número determinado de veces. Finalmente
+la parte de instrucciones funciona al igual que **WHILE**.
+
+Podemos tener la misma funcionalidad solo usando while:
+
+```c++
+**INICIALIZACIÓN**
+while (**CONDICIÓN**) {
+  **INSTRUCCIONES**
+  **INCREMENTO**
+}
+```
+
+#### Ejemplos de uso:
+
+1. imprimir los números del $1$ al $n$.
+
+```c++
+#include <iostream>
+using namespace std;
+
+int main() {
+  int n;
+  cin >> n;
+  for (int i = 1; i <= n; ++i) {
+    cout << i << " ";
+  }
+  cout << '\n';
+  return 0;
+}
+```
+
+o
+
+```c++
+#include <iostream>
+using namespace std;
+
+int main() {
+  int n;
+  cin >> n;
+  int i = 1;
+  while (i <= n) {
+    cout << i << " ";
+    ++i
+  }
+  cout << '\n';
+  return 0;
+}
+```
+
+2. hallar la suma de los cuadrados del $1$ al $n$.
+
+```c++
+#include <iostream>
+using namespace std;
+
+int main() {
+  int n;
+  cin >> n;
+  long long sum = 0;
+  for (int i = 1; i <= n; ++i) {
+    sum += i * i;
+  }
+  cout << sum << '\n';
+  return 0;
+}
+```
+
+**nota** existe una formula cerrada para esta suma: $\frac{n (n+1) (2n + 1)}{6}$.
+
+más en: [link](http://wiki.oia.unsam.edu.ar/curso-cpp/estructuras-repetitivas)
+
+## Arrays y matrices:
+
+Al igual que las estructuras repetitivas son una generalización de las 
+estructuras selectivas, los array y matrices son una generalización de los
+tipos de datos.
+
+Ejemplo array:
+
+```c++
+**TIPO_DE_DATO** array[n];
+```
+
+Ejemplo de matriz:
+
+```c++
+**TIPO_DE_DATO** matriz[n][m];
+```
+
+Y así para más dimensiones...
+
+
+Donde **\*\*TIPO_DE_DATO\*\*** puede ser cualquier tipo de dato que querramos.
+
+
+#### Ejemplo de uso:
+
+1. Ordenar una lista de números.
+
+```c++
+#include <iostream>
+using namespace std;
+
+int main() {
+  int n;
+  cin >> n;
+  int arr[n];
+  for (int i = 0; i < n; ++i) {
+    cin >> arr[i];
+  }
+  for (int i = 0; i < n; ++i) {
+    for (int j = i+1; j < n; ++j) {
+      if (arr[i] > arr[j]) {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+      } 
+    }
+  }
+  for (int i = 0; i < n; ++i) {
+    cout << arr[i] << " ";
+  }
+  cout << '\n';
+  return 0;
+}
+```
+
+**nota** El algoritmo es llamado burbuja, es un algoritmo simple para ordenar
+una lista de números, donde se coloca el menor de todos más a la izquierda 
+posible.
+
+2. recibes un mapa de islas donde '#' indica suelo y '.' indica mar, invertir
+el mapa como si fuera un espejo (la primera columna se vuelve la ultima, la
+seguna la penúltima y así...).
+
+```c++
+#include <iostream>
+using namespace std;
+
+int main() {
+  int n, m;
+  char mat[n][m];
+  for (int i = 0; i < n; ++i) {
+    for (int j = 0; j < m; ++j) {
+      cin >> mat[i][j];
+    }
+  }
+  for (int i = 0; i < n; ++i) {
+    for (int j = 0; j < m - j - 1; ++j) {
+      int temp = arr[i][j];
+      arr[i][j] = arr[i][m-j-1];
+      arr[i][j] = temp;
+    }
+  }
+  for (int i = 0; i < n; ++i) {
+    for (int j = 0; j < m; ++j) {
+      cout << arr[i][j];
+    }
+    cout << '\n';
+  }
+  return 0;
+}
+```
+
+## Funciones
+
+Las funciones son formas de tener pedazos de código reutilizables.
+
+```c++
+**TYPO_DE_DATO** **NOMBRE_DE_FUNCION**(**TYPO_DE_DATO** NOMBRE_1, **TYPO_DE_DATO** NOMBRE_2, ...) {
+  **INSTRUCCIONES**
+}
+```
+
+### Ejemplo de uso:
+
+1. Dados dos enteros a y b, verificar si a, a+b y b sean primos.
+
+```c++
+#include <iostream>
+using namespace std;
+
+bool es_primo(int n) {
+  if (n == 1) return false;
+  for (int i = 2; i*i <= n; ++i) {
+    if (n % i == 0) {
+      return false;
+    }
+  }
+  return true;
+}
+
+void print(string texto, int n) {
+  cout << texto;
+  if (es_primo(n)) {
+    cout << " es primo\n";
+  } else {
+    cout << " no es primo\n";
+  }
+}
+
+int main() {
+  int a, b;
+  cin >> a >> b;
+  print("a", a);
+  print("b", b);
+  print("a+b", a+b);
+  return 0;
+}
+```
+
+más en: [link](http://wiki.oia.unsam.edu.ar/curso-cpp/modularizacion-funciones)
+
+
+## Structs
+
+Los structs me permiten trabajar con bloques de variables heterogeneas que
+las necesito usar muchas veces. Además me permite aplicar métodos sobre este
+tipo de datos (Cómo el famoso **cin.get()**, que es un método **get** que se aplica
+sobre la variable **cin**).
+
+```c++
+struct **NUEVO_TIPO_DE_DATO** {
+  **TIPO_DE_DATO** NOMBRE_1;
+  **TIPO_DE_DATO** NOMBRE_2;
+  ...
+};
+```
+
+### Ejemplo de uso:
+
+1. sumar dos puntos e imprimir su respuesta. 
+
+```c++
+#include <iostream>
+using namespace std;
+
+struct punto {
+  int x;
+  int y;
+};
+
+int main() {
+  punto p, q;
+  cin >> p.x >> p.y;
+  cin >> q.x >> q.y;
+  punto respuesta;
+  respuesta.x = p.x + q.x;
+  respuesta.y = p.y + q.y;
+  cout << respuesta.x << " " << respuesta.y << '\n';
+  return 0;
+}
+```
+
+más en: [link](http://wiki.oia.unsam.edu.ar/curso-cpp/struct)
+
+
+# contest: [link](https://vjudge.net/contest/440807)
