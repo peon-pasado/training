@@ -38,3 +38,10 @@
 
   7. [semana 7](https://peon-pasado.github.io/training/clases/semana-7)
 
+      - [video 1](https://drive.google.com/file/d/1KBY1Be_o9kdV7bkuK8ZZk9CXMPKpVXR7/view?usp=sharing)
+
+      - [video 2](https://drive.google.com/file/d/1vClvN-Lxa7_dipyoy9_COLUPs1ug0q3L/view?usp=sharing)
+
+  8. [semana 8](https://peon-pasado.github.io/training/clases/semana-8)
+
+      - [contest](https://vjudge.net/contest/441914#rank)
