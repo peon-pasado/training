@@ -49,3 +49,5 @@
       - [video 1](https://drive.google.com/file/d/1a8NL-spz6x0uLm06Qy36piAYd0C4ssqr/view?usp=sharing)
 
       - [ejercicios](https://vjudge.net/contest/442068#problem/B)
+
+   9. [semana 10](https://peon-pasado.github.io/competitive-programming-classes/web/class-05.html)
