@@ -1,0 +1,20 @@
+---
+title: "material c++"
+output: html_document
+---
+
+1. [cplusplus.com tutorials](https://www.cplusplus.com/doc/tutorial/)
+
+2. [código facilíto](https://www.youtube.com/watch?v=7x9369_-cWc&list=PL4A486BBFC5AD733B)
+
+3. [programación ATS](https://www.youtube.com/watch?v=ld4nzao5XAc)
+
+4. [sololearn path](https://www.sololearn.com/learning/1051)
+
+5. [libro introductorio](http://es.tldp.org/Manuales-LuCAS/doc-tutorial-c++/doc-tutorial-c++.pdf)
+
+6. [programiz path](https://www.programiz.com/cpp-programming)
+
+7. [hackerrank path](https://www.hackerrank.com/domains/cpp?filters%5Bstatus%5D%5B%5D=unsolved&badge_type=cpp)
+
+

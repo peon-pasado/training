@@ -1,0 +1,234 @@
+---
+title: "<center><strong>Técnicas en fuerza bruta</strong></center>"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+<h2>
+<strong style="color: green;">Fijando Variables</strong>
+</h2>
+
+<h4>
+En esta técnica vamos a fijarnos en las variables con menor dominio. Y vamos
+a forzar a que tome algún valor.
+
+</h4>
+
+<h4>
+<strong style="color: blue;">Ejemplo 1:</strong>
+
+Dado $n = 8396835927480$, encontrar cuantos números $m$ cumplen que 
+$n = m \times d(m)$, donde $d(m)$ es la suma de dígitos de $m$.
+
+</h4>
+
+<h4>
+<strong> Solución: </strong>
+
+Debemos notar que $m \le n$, con eso nos damos cuenta que la cantidad de dígitos
+de $m$ no puede ser mayor a la cantidad de dígitos de $n$, si todos fueran $9$,
+entonces, $d(m) \le 9 (\left\lfloor \log_{10}n\right\rfloor + 1) = 9 \times 13= 117$.
+
+Ahora, si forzamos el valor de $d(m) = dm$, y $n$ es múltiplo de $d(m)$, debemos
+ver si se cumple que $d(\frac{n}{dm}) = dm$. Note como hemos transformado el 
+problema de búsqueda en un problema de verificación.
+
+</h4>
+
+```c++
+auto d = [](long long m) {
+  int sum = 0;
+  while (m > 0) {
+    sum += m % 10;
+    m /= 10;
+  }
+  return sum;
+};
+
+long long n = 8396835927480ll;
+int cnt = 0;
+for (int dm = 1; dm <= 117; ++dm) {
+  if (n % dm == 0) {
+    long long m = n / dm;
+    if (d(m) == dm) {
+      cnt += 1;
+    }
+  }
+}
+
+cout << "hay " << cnt << " soluciones" << endl;
+```
+
+<h4>
+<strong style="color: blue;">Ejemplo 2 ([Hot Bath](https://codeforces.com/contest/126/problem/A)):</strong>
+
+Queremos encontrar $y_1$ ($0 \le y_1 \le x_1$), $y_2$ ($0 \le y_2 \le x_2$) de tal forma que cumpla:
+</h4>
+
+$$\frac{y_1 t_1 + y_2 t_1}{y_1 + y_2} \ge t_0$$
+<h4>
+Además, que este promedio sea lo menor posible, y en caso de empate que la suma 
+$y_1 + y_2$ sea máxima. De forma compacta:
+</h4>
+
+
+\begin{align}
+&\!\min_{y_1, y_2}& (\frac{y_1 t_1 + y_2 t_2}{y_1 + y_2}, -(y_1 + y_2))\\
+&\text{sujeto a} & \frac{y_1 t_1 + y_2 t_1}{y_1 + y_2} \ge t_0\\
+&                & 0 \le y_1 \le x_1 \\
+&                & 0 \le y_2 \le x_2 \\
+&                & y_1, y_2 \in Z_{\ge 0}
+
+\end{align}
+
+<h4>
+<strong>Solución: </strong>
+
+Podemos ver que hay muchos candidatos para estas ecuaciones, actualmente
+$(x_1 + 1) \times (x_2 + 1)$. Vemos que si fijamos $y_1$ o $y_2$, la ecuación
+tampoco se torna bonita. Sin embargo, si fijamos $y_1 + y_2$, la función a
+optimizar se vuelve lineal respecto a $y_1$ y $y_2$. </br>
+Si vemos bien, las restricciones, también son linales respecto a $y_1$ o $y_2$.
+Así, solo tenemos que interceptar rangos! </br> </br>
+
+Fijar la suma reduce el problema a encontrar un $y_1$ o un $y_2$ (un par). Por
+tanto reducimos la cantidad de candidatos de $(x_1 + 1) \times (x_2 + 1)$ a
+$(x_1 + x_2 + 1)$. Solo debemos encontrar cual de estos maximiza la función.
+
+</h4>
+
+<h4>
+<strong>Algoritmo para encontrar pares candidatos:</strong>
+</h4>
+
+```c++
+vector<pair<int, int>> candidates;
+for (long long sum = 1; sum <= x1+x2; ++sum) {
+	long long l = max(0ll, sum-x2);
+	long long r = min(sum, x1);
+	if (t1 < t2) r = min(r, sum * (t2 - t0) / (t2 - t1));
+	if (l <= r) {
+		candidates.push_back({r, sum - r});
+	}
+}
+```
+
+<h4>
+<strong>Algoritmo para minimizar la función objetivo con los pares candidatos:</strong>
+</h4>
+```c++
+auto best = *min_element(candidates.begin(), candidates.end(), 
+  [&](pair<int, int> p, pair<int, int> q) {
+      auto l = (p.first*1ll*t1 + p.second*1ll*t2) * (q.first + q.second);
+      auto r = (q.first*1ll*t1 + q.second*1ll*t2) * (p.first + p.second);
+      return l < r || (l == r && p.first + p.second > q.first + q.second); 
+  }
+);
+```
+
+<h2>
+<strong style="color: green;">Simular</strong>
+</h2>
+
+<h4>
+En este caso la cantidad de candidatos es pequeña, pero no siempre es sencillo
+generarlos. A veces solo tienes que correr el algoritmo con un poco de astucia.
+</h4>
+
+
+<h4>
+<strong style="color: blue;">Ejemplo 1([Alphabetic Removals](https://codeforces.com/contest/999/problem/C)):</strong>
+
+Aca podemos ver que como el algoritmo elimina una letra a la vez, solo podemos agotar una letra a lo
+más $26$ veces (tamaño del alfabeto).
+</h4>
+
+```c++
+for (int i = 0; i < 26; ++i) {
+  string new_s = "";
+  for (int j = 0; j < s.size(); ++j) {
+    if (s[j] == 'a' + i && k > 0) {
+      k--;
+    } else {
+      new_s += s[j];
+    }
+  }
+  s = new_s;
+}
+cout << s << endl;
+```
+
+<h4>
+<strong style="color: blue;">Ejemplo 2([Batch Sort](https://codeforces.com/problemset/problem/724/B)):</strong>
+
+En el problema podemos intercambiar dos elementos de una fila, para toda fila, e itercambiar dos columnas.
+Te piden decidir si con estas operaciones realizadas cada una a lo más una vez, se puede hacer que cada
+fila sea la permutación identidad.
+</h4>
+
+<h4>
+Si vamos de atras hacia adelante, no es tan complicado:
+
+  1. Fijamos dos columnas de $O(m^2)$ formas, para ser intercambiadas.
+  
+  2. en cada fila elegimos dos columnas para intercambiar, ahora la elección anterior
+  se puede aplicar antes o después, verificamos ambas.
+  
+complejidad: $O(m^2 n^3)$.
+</h4>
+
+
+<h2>
+<strong style="color: green;">Reducción a la contribución</strong>
+</h2>
+
+<h4>
+En este caso la idea está en ver como un objeto contribuye al resultado final de
+la respuesta.
+</h4>
+
+<h4>
+<strong style="color: blue;">Ejemplo 1([Number of Triplets](https://codeforces.com/contest/181/problem/B)):</strong> </br>
+
+Debemos econtrar las tripletas $\{A, B, C\}$ de tal forma que uno de ellos está en el punto medio del segmento que une
+los otros dos. 
+</h4>
+
+<h4>
+<strong>Solución:</strong>
+
+En este caso podemos ver la contribución que obtiene un punto $P$ al ser punto medio.
+Vemos que un punto suma uno a la respuesta por cada par $\{A, B\}$ que cumple
+$\frac{(A+B)}{2} = P$. Por motivos de complejidad, se suma $1000$ para volver a 
+los puntos positivos y se mapea cada punto en un array de $2001 \times 2001$.
+
+</h4>
+
+```c++
+for (int i = 0; i < n; ++i) {
+  x[i] += 1000;
+  y[i] += 1000;
+}
+
+int cnt[2001][2001] = {0};
+for (int i = 0; i < n; ++i) {
+  for (int j = i+1; j < n; ++j) {
+    if ((x[i] + x[j]) % 2 == 1) continue;
+    if ((y[i] + y[j]) % 2 == 1) continue;
+    cnt[(x[i]+x[j])/2][(y[i]+y[j])/2] += 1;
+  }
+}
+
+int ans = 0;
+for (int i = 0; i < n; ++i) {
+  ans += cnt[x[i]][y[i]];
+}
+
+cout << ans << endl;
+```
+
+
+

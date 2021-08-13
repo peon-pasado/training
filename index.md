@@ -1,6 +1,6 @@
 # Olimpiadas de informática
 
-## clases:
+## clases (parte 1):
 
  1. [semana 1](https://peon-pasado.github.io/training/clases/semana-1)
 
@@ -52,3 +52,10 @@
 
    9. [semana 10](https://peon-pasado.github.io/competitive-programming-classes/web/class-05.html)
 
+## Clases (parte 2):
+
+   0. [material_c++](https://peon-pasado.github.io/training/clases/material_c++.html);
+
+   1. [semana 1](https://peon-pasado.github.io/training/clases/semana_9.html)
+
+      - [contest](https://vjudge.net/contest/453383)
