@@ -56,6 +56,6 @@
 
    0. [material_c++](https://peon-pasado.github.io/training/clases/material_c++.html);
 
-   1. [semana 1](https://peon-pasado.github.io/training/clases/semana_9.html)
+   1. [semana 1](https://peon-pasado.github.io/training/clases/semana-9.html)
 
       - [contest](https://vjudge.net/contest/453383)
